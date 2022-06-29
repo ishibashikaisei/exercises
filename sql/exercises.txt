@@ -1,0 +1,33 @@
+--ユーザー
+drop table if exists users cascade;
+
+create table users (
+id serial primary key
+, name varchar(100) not null
+, kana varchar(100) not null
+, zipcode varchar(8) not null
+, address varchar(200) not null
+, tel varchar(15) not null
+, regist_date timestamp not null
+, regist_user varchar(50)
+, update_date timestamp not null
+, update_user varchar(50)
+, del_flg integer not null
+, password varchar(50) not null
+, mail_address varchar(100) not null 
+
+) ;
+
+
+
+-- 商品
+drop table if exists mail_url cascade;
+
+create table mail_url (
+id serial primary key
+, mail_address varchar(100) not null
+, key varchar(120) not null
+, status integer not null
+, date timestamp not null
+);
+

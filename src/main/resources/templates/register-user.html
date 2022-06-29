@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8" />
+	<title>ユーザ登録</title>
+	
+</head>
+
+<body>
+					
+					<form method="post" th:action="@{/register/complete}"th:object="${userForm}">
+						
+							<legend>ユーザ登録</legend>
+								<span th:errors="*{name}" style="color:red">えら</span><br>
+								名前を入力してください：<input type="text" name="name"th:field="*{name}"><br>
+							<span th:errors="*{kana}" style="color:red">えら</span><br>
+							    ふりがなを入力してください：<input type="text" name="kana"th:field="*{kana}"><br>
+							<span th:errors="*{zipcode}" style="color:red">えら</span><br>
+							    郵便番号を入力してください：<input type="text" name="zipcode"th:field="*{zipcode}"><br>
+							<span th:errors="*{address}" style="color:red">えら</span><br>
+							    住所を入力してください：<input type="text" name="address"th:field="*{address}"><br>
+							<span th:errors="*{tel}" style="color:red">えら</span><br>
+							    電話番号を入力してください：<input type="text" name="tel"th:field="*{tel}"><br>
+							<span th:errors="*{pass}" style="color:red">えら</span><br>
+							    パスワードを入力してください：<input type="password" name="pass"th:field="*{pass}"><br>
+							<span th:errors="*{confirmpassword}" style="color:red">えら</span><br>
+							    確認用パスワードを入力してください：<input type="password" name="confirmpassword"th:field="*{confirmpassword}"><br>
+							
+								<button type="submit">登録</button>
+					
+					</form>	
+						
+						
+						
+						
+						
+						<!--<form method="post" th:action="@{/register/insert}" th:object="${userForm}">
+						<fieldset>
+							<legend>ユーザ登録</legend>
+							<div class="form-group">
+								<label for="inputName">名前:</label><label th:if="${#fields.hasErrors('name')}"
+									th:errors="*{name}" class="control-label" style="color: red"
+									for="inputError">名前を入力してください</label>
+								<input type="text" name="name" th:field="*{name}" id="inputName" class="form-control"
+									placeholder="Name" />
+							</div>
+							<div class="form-group">
+								<label for="inputEmail">ふりがな:</label><label th:if="${#fields.hasErrors('kana')}"
+									th:errors="*{kana}" class="control-label" style="color: red"
+									for="inputError">ふりがなを入力してください</label>
+								<input type="text" name="kana" th:field="*{kana}" id="inputKana" class="form-control"
+									placeholder="Kana" />
+							</div>
+							<div class="form-group">
+								<label for="inputZipcode">郵便番号:</label>
+								<label th:if="${#fields.hasErrors('zipcode')}" th:errors="*{zipcode}"
+									class="control-label" style="color: red" for="inputError">郵便番号を入力してください</label>
+
+
+
+								<input type="text" name="zipcode"
+									onKeyUp="AjaxZip3.zip2addr(this,'','address','address');" th:field="*{zipcode}"
+									id="inputZipcode" class="form-control" placeholder="Zipcode" />
+							</div>
+							<div class="form-group">
+								<label for="inputAddress">住所:</label>
+								<label th:if="${#fields.hasErrors('address')}" th:errors="*{address}"
+									class="control-label" style="color: red" for="inputError">住所を入力してください</label>
+
+								<input type="text" name="address" th:field="*{address}" id="inputAddress"
+									class="form-control" placeholder="Address" />
+							</div>
+							<div class="form-group">
+								<label for="inputTel">電話番号:</label>
+								<label th:if="${#fields.hasErrors('telephone')}" th:errors="*{telephone}"
+									class="control-label" style="color: red" for="inputError">電話番号を入力してください</label>
+								<input type="text" name="telephone" th:field="*{telephone}" id="inputTel"
+									class="form-control" placeholder="Tel" />
+							</div>
+							<div class="form-group">
+								<label for="inputPassword">パスワード:</label>
+								<label th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
+									class="control-label" style="color: red" for="inputError">パスワードを入力してください</label>
+								<input type="password" name="password" th:field="*{password}" id="inputPassword"
+									class="form-control" placeholder="Password" />
+							</div>
+							<div class="form-group">
+								<label for="inputConfirmationPassword">確認用パスワード:</label>
+								<label th:if="${#fields.hasErrors('confirmpassword')}" th:errors="*{confirmpassword}"
+									class="control-label" style="color: red" for="inputError">確認用パスワードを入力してください</label>
+								<input type="password" name="confirmpassword" th:field="*{confirmpassword}"
+									id="inputConfirmationPassword" class="form-control"
+									placeholder="Confirmation Password" />
+							</div>
+							<div class="form-group">
+								<button type="submit" class="btn btn-primary">登録</button>
+							</div>
+						</fieldset>
+					</form>-->
+				
+				
+				
+	<!--<script>
+		$(function () {
+			$.validator.addMethod(
+				"regex",
+				function (value, element, regexp) {
+					var check = false;
+					return this.optional(element) || regexp.test(value);
+				},
+				"無効な文字があります。"
+			);
+			$("form").validate({
+				rules: {
+					name: {
+						required: true,
+					},
+					email: {
+						required: true,
+						email: true,
+					},
+					zipcode: {
+						required: true,
+						regex: /^[0-9]{3}-?[0-9]{4}$/,
+					},
+					address: {
+						required: true,
+					},
+					telephone: {
+						required: true,
+						regex: /^[0-9]{3}-?[0-9]{4}-?[0-9]{4}$/ | /^[0-9]{3}-?[0-9]{3}-?[0-9]{4}$/ | /^[0-9]{2}-?[0-9]{4}-?[0-9]{4}$/ | /^[0-9]{4}-?[0-9]{2}-?[0-9]{4}$/,
+					},
+					password: {
+						required: true,
+						rangelength: [8, 16],
+
+					},
+					passwordConfirm: {
+						required: true,
+						equalTo: 'input[name=password]'
+					},
+				},
+				messages: {
+					name: {
+						required: '名前を入力して下さい',
+					},
+					email: {
+						required: 'メールアドレスを入力して下さい',
+						email: 'メールアドレスの形式が不正です',
+					},
+					zipcode: {
+						required: '郵便番号を入力して下さい',
+						regex: '郵便番号の形式が不正です',
+					},
+					address: {
+						required: '住所を入力して下さい',
+					},
+					telephone: {
+						required: '電話番号を入力して下さい',
+						regex: '電話番号は10桁か11桁で入力してください',
+					},
+					password: {
+						required: 'パスワードを入力して下さい',
+						rangelength: 'パスワードは８文字以上１６文字以内で設定してください'
+					},
+					passwordConfirm: {
+						required: '確認用パスワードを入力して下さい',
+						equalTo: 'パスワードと確認用パスワードが不一致です',
+					},
+				},
+			});
+		});
+	</script>-->
+</body>
+
+</html>

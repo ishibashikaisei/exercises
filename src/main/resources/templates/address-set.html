@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>メールアドレス入力</title>
+</head>
+<body>
+<form  th:action="@{/register/receive}" method="post" th:object="${mailUrlForm}">
+<span th:errors="*{mailAddress}" style="color:red">えら</span><br>
+メールアドレス：<input type="text" name="mail" th:field="*{mailAddress}"><br>
+
+<button>送信</button><br>
+		
+</form>
+</body>
+</html>
